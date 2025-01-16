@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
 
     private const float MAX_HORIZ_SPEED = 6.0f;
-    private const float JUMP = 12.0f;
+    private const float JUMP = 13.0f;
 
     private bool facingLeft = true;
     void Start()
@@ -55,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
         }
         rb.velocity = new Vector2(horizontalMovement, verticalMovement);
 
-        animator.SetBool("run", Math.Abs(rb.velocity.x) > 0.001f);
+        animator.SetBool("run", Math.Abs(rb.velocity.x) > 0.01f);
         animator.SetBool("jump", rb.velocity.y > 1f);
         animator.SetBool("land", rb.velocity.y < -1f);
     }

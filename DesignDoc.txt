@@ -1,0 +1,37 @@
+MINIBOSS GAME DESIGN DOCUMENT!!!
+--============================--
+
+Synopsis:
+You play as Konrad, a dinosaur living in Swamp Town* in the [????] Country*, which is facing an alien invasion that threatens to destroy the world in one week. An astronaut, Andy Apollo*, is tasked by the King to destroy the aliens and save the world. On this quest, Andy walks into Konrad's house unannounced (like you do in an RPG) and steals Konrad's calculator as an item. (like you do in an RPG) Konrad challenges Andy to a fight, loses, and begins the quest to get his calculator back from Andy. Konrad fights Andy a few more times but always loses.
+
+Konrad visits a few areas (probably 2-3) to gain new abilities to defeat Andy. In these areas he ends up meeting new characters and helping them, which ends up inadvertently helping Andy on his quest, to the point where it is Konrad, not Andy, who is really making progress towards defeating the aliens.
+
+At some point towards the end, Konrad discovers that he's the hero of the story and not actually a Miniboss as he initially believed. At the end he teams up with Andy and they defeat the aliens together.
+
+======================
+
+Gameplay:
+Split between overworld and battle
+
+OVERWORLD:
+-2D platformer
+-Made up of several rooms, both outdoor and indoor.
+-Touching an enemy starts a battle
+-Treasure chests scattered around with items inside
+
+BATTLE:
+-Turn based. Usually 2-4 enemies per encounter depending on what enemy is touched in the overworld.
+-Both Konrad and enemies have Energy stat.
+-Taking damage from attacks decreases energy.
+-**ATTACKING** decreases energy, but attacks that deal more damage to the opponent cost more energy to the user.
+-Attacks require action commands to deal more damage. Some attacks will have harder action commands but use less energy.
+
+Some of Konrad's attacks:
+-Punch - does moderate damage, takes low energy
+-Throw rocks - does a lot of damage, takes moderate energy, must aim at enemy, and if it misses it does nothing
+-Comedically large hammer - does a lot of damage, takes a lot of energy
+-Inhale - Does nothing except recover energy from previous attack
+-Anvil drop - Blow up a balloon, use it to float over an enemy, and drop an anvil. Higher height -> more damage. Possible to pop balloon and waste turn while also losing energy.
+
+
+*: Name subject to change, there will be many things with this asterisk probably. 
