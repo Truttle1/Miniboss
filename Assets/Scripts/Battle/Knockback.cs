@@ -12,10 +12,19 @@ public class Knockback : MonoBehaviour
         float startTime = Time.time;
         float duration = .1f;
         float progress = 0;
-        if(GetComponent<Monster>() != null )
+
+        if (!GetComponent<HasHP>().isBlocking())
         {
-            GetComponent<Monster>().setHurtAnimation(true);
+            if (GetComponent<Monster>() != null)
+            {
+                GetComponent<Monster>().setHurtAnimation(true);
+            }
+            if (GetComponent<Konrad>() != null)
+            {
+                GetComponent<Konrad>().setHurtAnimation(true);
+            }
         }
+
         while (progress < 1.0f)
         {
             yield return null;
@@ -38,11 +47,23 @@ public class Knockback : MonoBehaviour
         {
             GetComponent<Monster>().setHurtAnimation(false);
         }
+
+        if (GetComponent<Konrad>() != null)
+        {
+            GetComponent<Konrad>().setHurtAnimation(false);
+        }
     }
 
     public void doKnockback(float amount, float time)
     {
         startPosition = transform.position;
+        if(GetComponent<HasHP>() != null)
+        {
+            if (GetComponent<HasHP>().isBlocking())
+            {
+                amount *= 0.3f;
+            }
+        }
         knockbackPosition = transform.position + new Vector3(amount, 0, 0);
         StartCoroutine(knockback(time));
     }

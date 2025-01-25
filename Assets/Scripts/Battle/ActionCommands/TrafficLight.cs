@@ -67,7 +67,7 @@ public class TrafficLight : MonoBehaviour
     {
         if (running)
         {
-            if (Input.GetKeyDown(KeyCode.LeftShift))
+            if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
             {
                 if(good)
                 {

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KonradPunch : MonoBehaviour
+public class KonradPunch : BattleAttack
 {
     public GameObject monster;
     private Animator animator;
@@ -21,7 +21,6 @@ public class KonradPunch : MonoBehaviour
         walkVelocity = new Vector3(xSpeed, 0.0f, 0.0f);
         waiting = false;
         EventBus.Subscribe< ActionCommandFinishEvent>(actionCommandFinish);
-        StartCoroutine(punch());
     }
 
     private void actionCommandFinish(ActionCommandFinishEvent e)
@@ -36,7 +35,6 @@ public class KonradPunch : MonoBehaviour
     private IEnumerator punch()
     {
         start = transform.position;
-
         // Walk to monster
         animator.SetBool("walk", true);
         while(transform.position.x + 1.0f < monster.transform.position.x)
@@ -45,6 +43,11 @@ public class KonradPunch : MonoBehaviour
             yield return null;
         }
         animator.SetBool("walk", false);
+
+        if (monster.GetComponent<Monster>() != null)
+        {
+            monster.GetComponent<Monster>().setTarget(true);
+        }
 
         // Punch
         animator.SetBool("start_punch", true);
@@ -86,6 +89,10 @@ public class KonradPunch : MonoBehaviour
         // Walk back
         yield return new WaitForSeconds(.2f);
         animator.SetBool("walk", true);
+        if (monster.GetComponent<Monster>() != null)
+        {
+            monster.GetComponent<Monster>().setTarget(false);
+        }
         while (transform.position.x  > start.x)
         {
             transform.localScale = new Vector2(1.25f, 1.25f);
@@ -95,11 +102,13 @@ public class KonradPunch : MonoBehaviour
         transform.localScale = new Vector2(-1.25f, 1.25f);
         animator.SetBool("walk", false);
         rb.MovePosition(start);
-
+        running = false;
 
     }
-    void Update()
+
+    public override void startAttack()
     {
-        
+        running = true;
+        StartCoroutine(punch());
     }
 }

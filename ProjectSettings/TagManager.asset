@@ -53,3 +53,9 @@ TagManager:
   - name: Player
     uniqueID: 2492408435
     locked: 0
+  - name: BehindUI
+    uniqueID: 763106107
+    locked: 0
+  - name: BattleEntity
+    uniqueID: 2785383831
+    locked: 0

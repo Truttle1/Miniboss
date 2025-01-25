@@ -6,19 +6,36 @@ public class HasHP : MonoBehaviour
 {
     public int HP;
     public int maxHP;
-
+    private bool blocking;
     public int getHP()
     {
         return HP;
     }
 
+    public int getMaxHP()
+    {
+        return maxHP;
+    }
     public bool isDead()
     {
         return HP <= 0;
     }
 
+    public void setBlocking(bool blocking)
+    {
+        this.blocking = blocking;
+    }
+
     public void damage(int damage)
     {
+        if (blocking)
+        {
+            damage -= 1;
+        }
+        if (damage < 0)
+        {
+            damage = 0;
+        }
         HP -= damage;
         if (HP <= 0)
         {
@@ -33,5 +50,10 @@ public class HasHP : MonoBehaviour
         {
             HP = maxHP;
         }
+    }
+
+    public bool isBlocking()
+    {
+        return blocking;
     }
 }
