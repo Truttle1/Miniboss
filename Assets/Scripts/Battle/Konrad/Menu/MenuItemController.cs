@@ -22,6 +22,11 @@ public class MenuItemController : MonoBehaviour
         rightText.SetText(right);
     }
 
+    public string getMessage()
+    {
+        return message;
+    }
+
     // Update is called once per frame
     void Update()
     {

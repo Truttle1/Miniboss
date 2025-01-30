@@ -16,7 +16,7 @@ public class MonsterHealthbar : MonoBehaviour
 
     private void Update()
     {
-        if (monster.getTarget())
+        if (monster.getTarget() || monster.getHovered())
         {
             heatlhBarContainer.SetActive(true);
         }

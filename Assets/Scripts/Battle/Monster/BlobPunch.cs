@@ -44,7 +44,7 @@ public class BlobPunch : BattleAttack
             konrad.GetComponent<Knockback>().doKnockback(-1.5f, .3f);
         }
 
-        konrad.GetComponent<Konrad>().disableBlock();
+        konrad.GetComponent<Konrad>().DisableBlock();
         konrad.GetComponent<HasHP>().damage(GetComponent<Monster>().attack * 2);
 
 

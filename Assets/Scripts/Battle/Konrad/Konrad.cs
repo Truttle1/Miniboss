@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class Konrad : BattleEntity
@@ -21,13 +22,21 @@ public class Konrad : BattleEntity
         ITEM
     };
 
+    private enum SelectedAttack
+    {
+        PUNCH
+    }
+
     private MenuState menuState;
+    private SelectedAttack selectedAttack;
+
     private void Start()
     {
         animator = GetComponent<Animator>();
         punchAttack = GetComponent<KonradPunch>();
         hp = GetComponent<HasHP>();
         EventBus.Subscribe<EnemyStartAttackEvent>(EnemyStartAttack);
+        EventBus.Subscribe<MenuItemSelectEvent>(MenuItemSelect);
         currentAttack = null;
         menuState = MenuState.NONE;
     }
@@ -76,7 +85,7 @@ public class Konrad : BattleEntity
         EventBus.Publish(new KonradHPChangeEvent(hp.getHP(), hp.getMaxHP()));
     }
 
-    public void disableBlock()
+    public void DisableBlock()
     {
         canBlock = false;
     }
@@ -84,19 +93,119 @@ public class Konrad : BattleEntity
     protected override void takeTurnImpl()
     {
         canBlock = false;
-        SetMenuTop();
+        if (BattleManager.instance.battleWon())
+        {
+            EventBus.Publish(new MenuItemDataEvent(false));
+        }
+        else
+        {
+            SetMenuTop();
+        }
         //currentAttack = punchAttack;
         //currentAttack.startAttack();
     }
 
+    private void startAttack(GameObject target)
+    {
+        if(selectedAttack == SelectedAttack.PUNCH)
+        {
+            currentAttack = punchAttack;
+            ((KonradPunch)currentAttack).monster = target;
+            hp.damage(1);
+        }
+        currentAttack.startAttack();
+        EventBus.Publish(new MenuItemDataEvent(false)); //Disable menu
+    }
+
+    /* Menu Stuff */
+    private void MenuItemSelect(MenuItemSelectEvent e)
+    {
+        string message = e.message;
+        if (message != null)
+        {
+            switch (menuState)
+            {
+                case MenuState.TOP:
+                    SelectMenuTop(message);
+                    break;
+                case MenuState.ATTACK:
+                    SelectMenuAttack(message);
+                    break;
+                case MenuState.SELECT_MONSTER:
+                    SelectMenuMonster(message);
+                    break;
+            }
+        }
+    }
     private void SetMenuTop()
     {
         menuState = MenuState.TOP;
-        EventBus.Publish(new[] {
+        EventBus.Publish(new MenuItemDataEvent(new[] {
             new MenuItemData("Attack", "", "ATTACK"),
             new MenuItemData("Item", "", "ITEM"),
             new MenuItemData("Breathe", "", "BREATHE"),
-        });
+            new MenuItemData("Escape", "", "ESCAPE"),
+        }, false));
+    }
+
+    private void SelectMenuTop(string message)
+    {
+        switch (message)
+        {
+            case "BACK":
+                break;
+            case "ATTACK":
+                SetMenuAttack();
+                break;
+            case "BREATHE":
+                break;
+        }
+    }
+    private void SetMenuAttack()
+    {
+        menuState = MenuState.ATTACK;
+        EventBus.Publish(new MenuItemDataEvent(new[] {
+            new MenuItemData("Punch", "1E", "PUNCH"),
+        }, true));
+    }
+    private void SelectMenuAttack(string message)
+    {
+        switch (message)
+        {
+            case "BACK":
+                SetMenuTop();
+                break;
+            case "PUNCH":
+                selectedAttack = SelectedAttack.PUNCH;
+                SetMenuMonster();
+                break;
+        }
+    }
+    private void SetMenuMonster()
+    {
+        menuState = MenuState.SELECT_MONSTER;
+        List<MenuItemData> monsterMenuItems = new List<MenuItemData>();
+        foreach(Monster monster in BattleManager.instance.getMonsters())
+        {
+            monsterMenuItems.Add(new MenuItemData(monster.getMenuName(), "", monster.getMenuName()));
+        }
+        EventBus.Publish(new MenuItemDataEvent(monsterMenuItems.ToArray(), true));
+    }
+    private void SelectMenuMonster(string message)
+    {
+        switch (message)
+        {
+            case "BACK":
+                SetMenuAttack();
+                break;
+            default:
+                GameObject target = BattleManager.instance.getMonsterFromName(message);
+                if(target != null)
+                {
+                    startAttack(target);
+                }
+                break;
+        }
     }
 }
 
