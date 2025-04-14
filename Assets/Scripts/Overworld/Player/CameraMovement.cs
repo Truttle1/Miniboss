@@ -53,7 +53,6 @@ public class CameraMovement : MonoBehaviour
                 new_y = y_max;
             }
             transform.position = new Vector3(new_x, new_y, -10);
-            Debug.Log("Camera at (" + new_x + ", " + new_y + ")");
         }
     }
 }

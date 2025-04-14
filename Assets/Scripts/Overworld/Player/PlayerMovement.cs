@@ -25,7 +25,14 @@ public class PlayerMovement : MonoBehaviour
         float horizontalMovement = Input.GetAxis("Horizontal") * MAX_HORIZ_SPEED;
         float verticalMovement = rb.velocity.y;
         bool onGround = Physics2D.Raycast(transform.position, Vector2.down, boxCollider.bounds.extents.y + 0.1f, LayerMask.GetMask("Wall"));
-        Debug.Log(onGround);
+        if (TextBox.instance.disablingMovement())
+        {
+            rb.velocity = new Vector2(0, verticalMovement);
+            animator.SetBool("run", false);
+            animator.SetBool("jump", false);
+            animator.SetBool("land", false);
+            return;
+        }
 
         if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
         {
