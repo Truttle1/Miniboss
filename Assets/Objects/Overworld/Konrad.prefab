@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8513084625370166034}
   - component: {fileID: 542624594781979216}
   - component: {fileID: 8665757094494525331}
+  - component: {fileID: 8796135044208163219}
   m_Layer: 7
   m_Name: Konrad
   m_TagString: Untagged
@@ -172,6 +173,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4f7fd8b89e007049938cbbea2c6ba93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iFrameDuration: 2
+  translucentAlpha: 0.5
 --- !u!95 &8665757094494525331
 Animator:
   serializedVersion: 5
@@ -193,3 +196,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8796135044208163219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008449303488722517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11fdf83d2a5e5984b9c487cd6cfa551e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ignoreThese: []

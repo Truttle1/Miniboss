@@ -10,13 +10,15 @@ public class MenuItemController : MonoBehaviour
     private bool selected;
     public TMP_Text leftText;
     public TMP_Text rightText;
-
     private string message;
 
-    public void SetState(string left, string right, string msg)
+    private string flavorText;
+
+    public void SetState(string left, string right, string msg, string flavorText)
     {
         highlight.SetActive(false);
         message = msg;
+        this.flavorText = flavorText;
 
         leftText.SetText(left);
         rightText.SetText(right);
@@ -25,6 +27,11 @@ public class MenuItemController : MonoBehaviour
     public string getMessage()
     {
         return message;
+    }
+
+    public string getFlavorText()
+    {
+        return flavorText;
     }
 
     // Update is called once per frame

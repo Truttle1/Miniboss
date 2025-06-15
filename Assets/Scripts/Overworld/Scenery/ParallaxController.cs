@@ -22,6 +22,12 @@ public class ParallaxController : MonoBehaviour
     private const float BG_WIDTH = 12.8f;
     void Start()
     {
+        SetUpParallax();
+    }
+
+    private void SetUpParallax()
+    {
+        
         float lastOffset = -BG_WIDTH/2.0f;
         xOffset = new float[backgroundCount];
         bgObjects = new GameObject[backgroundCount];
@@ -32,9 +38,8 @@ public class ParallaxController : MonoBehaviour
             lastOffset += BG_WIDTH;
         }
     }
-
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         for (int i = 0; i < backgroundCount; i++)
         {

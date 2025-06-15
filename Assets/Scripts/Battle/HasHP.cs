@@ -56,4 +56,26 @@ public class HasHP : MonoBehaviour
     {
         return blocking;
     }
+
+    public void setMaxHP(int maxHP)
+    {
+        this.maxHP = maxHP;
+        if (HP > maxHP)
+        {
+            HP = maxHP;
+        }
+    }
+
+    public void setHP(int HP)
+    {
+        this.HP = HP;
+        if (this.HP > maxHP)
+        {
+            this.HP = maxHP;
+        }
+        if (this.HP < 0)
+        {
+            this.HP = 0;
+        }
+    }
 }

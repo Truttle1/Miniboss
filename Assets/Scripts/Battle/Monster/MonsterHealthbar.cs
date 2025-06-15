@@ -6,11 +6,11 @@ public class MonsterHealthbar : MonoBehaviour
 {
     public GameObject healthBar;
     public GameObject heatlhBarContainer;
-    private float healthBarMaxSize;
+    [SerializeField] private float healthBarMaxSize = 2.5f;
     private Monster monster;
     void Start()
     {
-        healthBarMaxSize = healthBar.transform.localScale.x;
+        //healthBarMaxSize = healthBar.transform.localScale.x;
         monster = GetComponent<Monster>();
     }
 

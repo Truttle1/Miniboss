@@ -8,16 +8,22 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private BoxCollider2D boxCollider;
     private Animator animator;
+    private SpriteRenderer spriteRenderer;
 
     private const float MAX_HORIZ_SPEED = 6.0f;
     private const float JUMP = 13.0f;
-
     private bool facingLeft = true;
+    private bool iFrame = false;
+
+    [SerializeField] private float iFrameDuration = 5f;
+    [SerializeField] private float translucentAlpha = 0.5f;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -65,5 +71,55 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("run", Math.Abs(rb.velocity.x) > 0.01f);
         animator.SetBool("jump", rb.velocity.y > 1f);
         animator.SetBool("land", rb.velocity.y < -1f);
+    }
+
+    
+    public void TriggerIFrames()
+    {
+        if (!iFrame)
+        {
+            DeleteAllNamedEncounter();
+            StartCoroutine(IFrameCoroutine());
+        }
+    }
+
+    
+    void DeleteAllNamedEncounter()
+    {
+        GameObject[] allObjects = FindObjectsOfType<GameObject>();
+
+        foreach (GameObject obj in allObjects)
+        {
+            if (obj.name == "Encounter")
+            {
+                Destroy(obj);
+            }
+        }
+    }
+
+    private IEnumerator IFrameCoroutine()
+    {
+        iFrame = true;
+
+        // Make player translucent
+        Color c = spriteRenderer.color;
+        c.a = translucentAlpha;
+        spriteRenderer.color = c;
+
+        // Ignore collisions with enemies
+        Collider2D[] enemyColliders = GameObject.FindObjectsOfType<Collider2D>();
+        int enemyLayerIndex = LayerMask.NameToLayer("Enemy");
+        Physics2D.IgnoreLayerCollision(gameObject.layer, enemyLayerIndex, true);
+
+        yield return new WaitForSeconds(iFrameDuration);
+
+        // Restore opacity
+        c.a = 1f;
+        spriteRenderer.color = c;
+
+        // Re-enable collisions
+        Physics2D.IgnoreLayerCollision(gameObject.layer, enemyLayerIndex, false);
+
+        iFrame = false;
     }
 }

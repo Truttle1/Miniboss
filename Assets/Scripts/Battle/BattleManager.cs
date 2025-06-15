@@ -4,7 +4,6 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEditor.Timeline.TimelinePlaybackControls;
-
 public class BattleManager : MonoBehaviour
 {
     public static BattleManager instance;
@@ -13,6 +12,15 @@ public class BattleManager : MonoBehaviour
 
     private BattleEntity currentEntity;
     private int currentEntityID;
+    private Konrad konrad;
+
+    private bool startedEndText;
+
+    private bool canLeaveBattle = false;
+
+
+
+    [SerializeField] private float fadeTime = 0.5f; // Duration of the fade effect
     void Start()
     {
         if (instance != null && instance != this)
@@ -25,9 +33,30 @@ public class BattleManager : MonoBehaviour
         }
         currentEntity = null;
         currentEntityID = -1;
+        startedEndText = false;
+        canLeaveBattle = false;
+
+        
+        GameObject encounterPrefab = GameManager.Instance.getEncounter();
+        GameObject encounterInstance = Instantiate(encounterPrefab);
+
+        encounterInstance.name = "Encounter";
+        List<BattleEntity> allEntities = new List<BattleEntity>(entities);
+
+        allEntities.AddRange(encounterInstance.GetComponentsInChildren<Monster>());
+        entities = allEntities.ToArray();
+
+        konrad = FindObjectOfType<Konrad>();
+        EventBus.Publish(new FadeEvent(true));
+        EventBus.Subscribe<PermitLeaveBattleEvent>(OnPermitLeaveBattle);
     }
 
     public bool battleWon()
+    {
+        return getMonsters().Length == 0 && konrad != null && konrad.isBattleFinished() && !konrad.isDead();
+    }
+    
+    public bool allEnemiesDead()
     {
         return getMonsters().Length == 0;
     }
@@ -39,8 +68,45 @@ public class BattleManager : MonoBehaviour
             getNextEntity();
         }
 
-        winText.SetActive(battleWon());
+        if(!startedEndText)
+        {
+            if(battleWon())
+            {
+                startedEndText = true;
+                EventBus.Publish(new BigTextStartEvent(BigTextType.Win));
+            }
+            else if(konrad != null && konrad.isDead())
+            {
+                startedEndText = true;
+                EventBus.Publish(new BigTextStartEvent(BigTextType.GameOver));
+            }
+        }
 
+        if(Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+        {
+            if(canLeaveBattle)
+            {
+                StartCoroutine(endEncounter());
+            }
+        }
+
+    }
+
+    private IEnumerator endEncounter()
+    {
+        canLeaveBattle = false;
+        OverworldManager overworld = FindObjectOfType<OverworldManager>().GetComponent<OverworldManager>();
+        if(battleWon())
+        {
+            GameManager.Instance.setBattleStatus(LastBattleStatus.Victory);
+        }
+        
+        if(overworld != null)
+        {
+            EventBus.Publish(new FadeEvent(false));
+            yield return new WaitForSeconds(0.5f);
+            overworld.OnEncounterEnd();
+        }
     }
 
     void getNextEntity()
@@ -80,5 +146,17 @@ public class BattleManager : MonoBehaviour
             }
         }
         return null;
+    }
+
+    private void OnPermitLeaveBattle(PermitLeaveBattleEvent leaveEvent)
+    {
+        canLeaveBattle = true;
+    }
+}
+
+public class PermitLeaveBattleEvent
+{
+    public PermitLeaveBattleEvent()
+    {
     }
 }

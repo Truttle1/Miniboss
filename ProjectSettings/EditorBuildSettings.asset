@@ -8,7 +8,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/BattleTEST.unity
     guid: b8fb4de640891de4a927ae1820063ba1
+  - enabled: 1
+    path: Assets/Scenes/TEST/PlatformEnemyTEST.unity
+    guid: 67d38c5b5c15fcd48abb8ce0525bd7bb
+  - enabled: 1
+    path: Assets/Scenes/Battle.unity
+    guid: d79b47314be1ac7478c02d2d7e0ac9e0
   m_configObjects: {}

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6566041168960068792}
   - component: {fileID: 6832307173140656548}
   - component: {fileID: 7081224408556126648}
+  - component: {fileID: 335702731602230258}
   m_Layer: 0
   m_Name: Konrad
   m_TagString: Untagged
@@ -174,5 +175,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6381d0e85e00eb4eba1117c5fd0e5bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &335702731602230258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8724987214547156097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfeb66677b1ab940aaca959a000da32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

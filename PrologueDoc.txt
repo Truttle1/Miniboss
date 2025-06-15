@@ -1,0 +1,176 @@
+MINIBOSS CHRONICLES PROLOGUE:
+
+Initial Cutscene
+--============--
+Begin on NEWS on TV in SODA SHOP
+
+News Anchor: BREAKING URGENT NEWS!
+
+Ships belonging to the evil Fromulons are headed towards Earth.
+
+It is believed that they plan to enslave everyone here and turn Earth into an intergalactic gas station and snack bar.
+
+All hope is lost.
+
+Oh wait, what's this?
+
+Andy Apollo? Guardian of the Skies and Stars!?!?
+
+He's here to save us! An adventure of heroism, action, and wonder is sure to follow him! Man, it would be great if they made a video game about him someday!
+
+*Camera pans to the soda shop, revealing KONRAD and FITZ sitting at a table*
+
+Konrad: Hmmpf... "Andy Apollo"... That guy's always rubbed me the wrong way...
+Fitz: And why's that, Buddy?
+Konrad: I dunno... Maybe it's because he's always on TV acting so dang perfect all the time... and everything seems to come so easily to him!
+Fitz: Well I mean, he is VERY charming on TV, you can't deny that.
+Konrad: I know, it's just that... I feel like I have to work SO hard to accomplish even a fraction of what he can... In fact, I can't even accomplish even a fraction of what YOU can!
+Fitz: Konrad don't beat yourself up...
+Konrad: Easy for you to say, Mr. popular Valedictorian with a full scholarship to Dragonscale University...
+Fitz: Hey, being waitlisted is NOT the same as being rejected. Plus, you're WAY more talented than you realize. And speaking of that...
+*Fitz pulls out Konrad's calculator*
+Fitz: Thanks for letting me borrow your homemade calculator.
+Konrad: Hmm... thanks for being so supportive, Big Guy...
+Fitz: Don't mention it, Buddy. I'll be here for you whenever you need me... probably at this very soda shop, I don't have any plans for the summer except finally getting to relax.
+Konrad: Well then, I best be going. See ya round, Fitz!
+
+--=============--
+PLAYER TAKES CONTROL OF KONRAD HERE
+
+Lepidopolis #1
+-Trying to go right => "Useless Co. Useless Tree", blocks the path. There are sticky notes on the tree, all of which are complaints that the tree exists.
+-Inside soda shop => 
+	-Fitz.
+		"Hey Konrad! I thought you were leaving, what brings you back?"
+		Konrad: "Nothing, I just forgot something..."
+	-Cashier.
+		"Welcome to Ye Old Timey Soda Shoppe! What would you like?"
+	
+	-ITEMS AT STORE (prices subject to change):
+		- Cola: $2, Restores 8E
+		- Root Beer: $4, Restores 20E
+		- Ginger Ale: $1, Restores 2E, Cures any Status Effects
+		- Bottled Caffeine: $6, 2X Attack for 2-4 Turns
+		- Throwing Tomato: $5 for 3, Damages a random enemy WITHOUT using E. 
+-Going left => Konrad's Dumpster House, going here progresses the story, this section is meant to introduce the overworld in a simple way.
+
+--=============--
+KONRAD ENTERS DUMPSTER HOUSE
+
+*Konrad places his calculator on his dresser and lies in bed*
+
+Konrad: Hrmmm... Seriously how does Andy Apollo do it? What do I need to do to... well... at the bare minimum... NOT LIVE IN A DUMPSTER?
+
+*Andy Apollo enters Konrad's house unannounced.*
+
+Konrad: Huh? Wait WHAT THE??!!??
+Konrad: Is the secret just braindead confidence and a lack of manners? You're supposed to KNOCK!
+
+*Andy grabs Konrad's calculator off his desk and leaves*
+
+Konrad: WHA!!?!?? HEY!!!
+
+*Konrad runs outside*
+
+Konrad: YOU THERE!!! You are NOT stealing my stuff and getting away with it. You've just made the WORST MISTAKE OF YOUR LIFE, Space Boy!
+
+*Konrad attacks Andy Apollo*
+
+---
+!!BATTLE!!
+ANDY APOLLO
+HP = (Infinite, Scripted Loss)
+
+ATTACKS 
+- Laser gun, does 4E of damage to Konrad
+- Big Laser, Andy uses this if Konrad manages to survive 3 turns. Does 20E of damage to Konrad, which is more than he has total. 
+---
+
+--=============--
+BACK IN SODA SHOP, AFTER KONRAD LOSES TO ANDY
+
+*Black screen
+Fitz: Konrad? Konrad?!?
+*Konrad awakens*
+Konrad: Euuughhhhhhh.... Fitz? Where am I?
+Fitz: The soda shop.
+Konrad: What happened?
+Fitz: Well... you had the absolutely genius idea to try beating up Andy Apollo...
+Konrad: It's because he's a DIRTY CALCULATOR THIEF!!! Wher'd he go!?
+Fitz: He started heading east, towards Bofflebrook. I've heard he's on a quest to build a Fromulon Beacon to board the Fromulon Mothership. He needs a few artifacts in order to build it... I think...
+Fitz: But anyway, Bofflebrook is an interesting place. It's much less technologically advanced then we are here in Lepidopolis, plus I've heard that they've been dealing with Kobold raids recently... It makes you feel grateful for living in such a nice city, doesn't it?
+Konrad: Well then... that's where I'm going. I've got a score to settle with him now!
+Fitz: Dude, that's a terrible idea...
+Konrad: That's what they said about a lot of ideas before they turned out well. And besides, I'm getting my calculator back whether Astronaut McBarge-In wants me to or not.
+Fitz: Very well... but at least stock up on some drinks before you go. In battle, your energy determines both how strong the attacks you can use are, and how much you can get hurt before passing out.
+*Fitz gives Konrad $30*
+Konrad: Wow! Thanks a billion, Big Guy!
+Fitz: Don't mention it, Buddy... And don't forget to swing by sometimes, I want updates! Plus I'll give you any interesting leads that I find.
+
+---
+
+Lepidopolis #2
+-The Useless Tree has been shot down by a laser gun.
+-Heading right leads to a section of town covered in slimes and sentient garbage cans that fades into a grassland type area. Bofflebrook is to the right, as the modern city of Lepidopolis fades into medieval Bofflebrook.
+
+---
+!!ENEMY!!
+UNIDENTIFIED BLOB
+HP = 4
+
+ATTACKS
+- Regular, does 2E of damage to Konrad
+---
+
+---
+!!ENEMY!!
+GARBZOP
+HP = 6
+
+ATTACKS
+- Regular, does 2E of damage to Konrad
+- Rotten Fruit, 1E of damage to Konrad, 25% chance inflicts Konrad with POISON
+
+POISON
+- At the end of Konrad's turn, he takes 1E of additional damage.
+- Can be cured with Ginger Ale, or when the battle ends.
+---
+
+---
+!!ENEMY!!
+MOSQEETER
+HP = 4
+
+ATTACKS
+- Regular, does 2E of damage to Konrad
+- Sludge, 1E of damage to Konrad, 25% chance inflicts Konrad with FATIGUE
+
+FATIGUE
+- Konrad's attacks do 1/2 their normal damage.
+- Can be cured with Ginger Ale, or when the battle ends.
+- This modifier is applied ON TOP OF any positive modifiers that Konrad has, so if he drinks the Caffeine then he has regular attack
+---
+
+MAJOR AREA #1 - BOFFLEBROOK
+
+Bofflebrook is a medieval village populated by humanoids (probably with purple skin to avoid representing actual human racial groups too closely.)
+
+*Small intro cutscene*
+-A Kobold is seen running out of town with a loaf of bread.
+-Townsfolk chases after the Kobold screaming: HEY! YOU PEST! GIVE THAT BACK!!!
+
+---
+
+Bofflebrook #1
+
+To the left => Grasslands + Lepidopolis
+Here => Bofflebrook Pub
+Right => Bofflebrook #2
+
+Bartender: Welcome to Bofflebrook, stranger! We’re a simple town with simple ways. Fair warning though... the other folks might mistake you for a tall Kobold. Happens all the time. Not me, though — I’m sharper than that!
+
+ITEMS:
+- Bread: $2, Restores 6E
+- Olde Brewe: $3, Restores 20E, 25% chance to inflict WOOZY
+- Bottle o' Poison: $7, Throw at an enemy to deal damage them AND poison them without using E.
+- Bottle o' Spicy: $9, Throw at an enemy to deal a lot of damage AND burn them without using E.
