@@ -72,19 +72,21 @@ public class KonradPunch : BattleAttack
         }
         yield return new WaitForSeconds((13 / 60.0f));
 
-        if(monster.GetComponent<Knockback>() != null)
-        {
-            monster.GetComponent<Knockback>().doKnockback(1.5f, .3f);
-        }
-
+        int dmg;
         if(success)
         {
-            monster.GetComponent<HasHP>().damage(GetComponent<Konrad>().attack * 2);
+            dmg = monster.GetComponent<HasHP>().damage((int)(GetComponent<Konrad>().GetAttack() * 2));
         }
         else
         { 
-            monster.GetComponent<HasHP>().damage(GetComponent<Konrad>().attack * 1);
+            dmg = monster.GetComponent<HasHP>().damage((int)(GetComponent<Konrad>().GetAttack() * 1));
         }
+
+        if(monster.GetComponent<Knockback>() != null)
+        {
+            monster.GetComponent<Knockback>().doKnockback(1.5f, .3f, dmg);
+        }
+
         yield return new WaitForSeconds((27 / 60.0f));
         animator.SetBool("punch_good", false);
         animator.SetBool("punch_bad", false);

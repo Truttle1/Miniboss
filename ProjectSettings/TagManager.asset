@@ -60,3 +60,6 @@ TagManager:
   - name: BattleEntity
     uniqueID: 2785383831
     locked: 0
+  - name: EyeCandy
+    uniqueID: 3157693335
+    locked: 0

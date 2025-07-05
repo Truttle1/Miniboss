@@ -38,14 +38,14 @@ public class BlobPunch : BattleAttack
         // Punch
         animator.SetBool("punching", true);
         yield return new WaitForSeconds((124 / 60.0f));
+        int dmg = konrad.GetComponent<HasHP>().damage(GetComponent<Monster>().attack * 2);
 
         if (konrad.GetComponent<Knockback>() != null)
         {
-            konrad.GetComponent<Knockback>().doKnockback(-1.5f, .3f);
+            konrad.GetComponent<Knockback>().doKnockback(-1.5f, .3f, dmg);
         }
 
         konrad.GetComponent<Konrad>().DisableBlock();
-        konrad.GetComponent<HasHP>().damage(GetComponent<Monster>().attack * 2);
 
 
         // Walk back

@@ -20,6 +20,7 @@ public class BattleManager : MonoBehaviour
 
 
 
+
     [SerializeField] private float fadeTime = 0.5f; // Duration of the fade effect
     void Start()
     {
@@ -63,8 +64,13 @@ public class BattleManager : MonoBehaviour
 
     void Update()
     {
+        konrad.BetweenTurns();
         if(currentEntity == null || !currentEntity.isTakingTurn())
         {
+            if(StatusBarController.instance.isRunning())
+            {
+                return;
+            }
             getNextEntity();
         }
 
@@ -127,6 +133,11 @@ public class BattleManager : MonoBehaviour
         {
             if (entities[i] != null && entities[i] is Monster)
             {
+                if(entities[i].gameObject.GetComponent<HasHP>() && 
+                   entities[i].gameObject.GetComponent<HasHP>().getHP() <= 0)
+                {
+                    continue; // Skip dead monsters
+                }
                 monsters.Add((Monster) entities[i]);
             }
         }

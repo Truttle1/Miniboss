@@ -7,13 +7,13 @@ public class Knockback : MonoBehaviour
     private Vector3 startPosition;
     private Vector3 knockbackPosition;
 
-    private IEnumerator knockback(float time)
+    private IEnumerator knockback(float time, int damage)
     {
         float startTime = Time.time;
         float duration = .1f;
         float progress = 0;
 
-        if (!GetComponent<HasHP>().isBlocking())
+        if (!GetComponent<HasHP>().isBlocking() && damage > 0)
         {
             if (GetComponent<Monster>() != null)
             {
@@ -54,7 +54,7 @@ public class Knockback : MonoBehaviour
         }
     }
 
-    public void doKnockback(float amount, float time)
+    public void doKnockback(float amount, float time, int damage)
     {
         startPosition = transform.position;
         if(GetComponent<HasHP>() != null)
@@ -65,6 +65,6 @@ public class Knockback : MonoBehaviour
             }
         }
         knockbackPosition = transform.position + new Vector3(amount, 0, 0);
-        StartCoroutine(knockback(time));
+        StartCoroutine(knockback(time, damage));
     }
 }

@@ -5565,7 +5565,7 @@ PrefabInstance:
     - target: {fileID: 2870910872730139497, guid: f777f0cbc0c847d4fa6ed2af151bc043, type: 3}
       propertyPath: encounterPrefab
       value: 
-      objectReference: {fileID: 7872540314179326988, guid: f00d908a4828f1648a335d85112fbd1b, type: 3}
+      objectReference: {fileID: 7872540314179326988, guid: a66ffceb31955f7449189e09fdb49479, type: 3}
     - target: {fileID: 3946643064925443027, guid: f777f0cbc0c847d4fa6ed2af151bc043, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.3691893

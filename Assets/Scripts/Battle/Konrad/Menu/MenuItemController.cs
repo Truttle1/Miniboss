@@ -14,7 +14,11 @@ public class MenuItemController : MonoBehaviour
 
     private string flavorText;
 
-    public void SetState(string left, string right, string msg, string flavorText)
+    private bool itemEnabled = true;
+
+    private Color? overrideColor = null;
+
+    public void SetState(string left, string right, string msg, string flavorText, Color? overrideColor = null)
     {
         highlight.SetActive(false);
         message = msg;
@@ -22,6 +26,8 @@ public class MenuItemController : MonoBehaviour
 
         leftText.SetText(left);
         rightText.SetText(right);
+
+        this.overrideColor = overrideColor;
     }
 
     public string getMessage()
@@ -45,10 +51,34 @@ public class MenuItemController : MonoBehaviour
         {
             highlight.SetActive(false);
         }
+
+        if(itemEnabled)
+        {
+            if(overrideColor != null)
+            {
+                leftText.color = overrideColor.Value;
+                rightText.color = overrideColor.Value;
+            }
+            else
+            {
+                leftText.color = new Color32(65, 115, 0, 255);
+                rightText.color = new Color32(65, 115, 0, 255);
+            }
+        }
+        else
+        {
+            leftText.color = new Color32(100, 100, 100, 255);
+            rightText.color = new Color32(100, 100, 100, 255);
+        }
     }
 
     public void setSelected(bool selected)
     {
         this.selected = selected;
+    }
+
+    public void setItemEnabled(bool itemEnabled)
+    {
+        this.itemEnabled = itemEnabled;
     }
 }

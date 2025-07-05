@@ -1,22 +1,31 @@
 using System;
 using UnityEngine;
 
+[Serializable]
 public enum ItemEffectType
 {
     Heal,
     Attack,
     SetStatusKonrad,
 }
-[System.Serializable]
+[Serializable]
+public enum ItemAttack
+{
+    NONE,
+    THROW_TOMATO
+}
+[Serializable]
 public class ItemEffect
 {
     public ItemEffectType effectType;
     public int value;
     public KonradStatusEffect konradStatusEffect;
+
+    public ItemAttack attack;
 }
 
 
-[System.Serializable]
+[Serializable]
 public class Item
 {
     public string name;
@@ -54,6 +63,7 @@ public class Item
     {
         return itemEffect;
     }
+
 
     /** 
      * UseItem method decreases the count of the item by 1 if there are items available.

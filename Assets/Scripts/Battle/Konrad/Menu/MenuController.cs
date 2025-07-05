@@ -27,6 +27,8 @@ public class MenuController : MonoBehaviour
     public TMP_Text flavorText;
     public GameObject flavorTextSection;
 
+    public StatusBarController statusBar;
+
     
     private void Start()
     {
@@ -78,17 +80,23 @@ public class MenuController : MonoBehaviour
                 RefreshMenuDisplay();
             }
 
-            if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+            if(!StatusBarController.instance.isRunning())
             {
-                EventBus.Publish(new MenuItemSelectEvent(menuItems[selection].GetComponent<MenuItemController>().getMessage()));
+                if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+                {
+                    EventBus.Publish(new MenuItemSelectEvent(menuItems[selection].GetComponent<MenuItemController>().getMessage()));
+                }
+
+                if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
+                {
+                    EventBus.Publish(new MenuItemSelectEvent("BACK"));
+                }
             }
 
-            if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
+            if(menuItems[selection] != null && menuItems[selection].GetComponent<MenuItemController>() != null)
             {
-                EventBus.Publish(new MenuItemSelectEvent("BACK"));
+                menuItems[selection].GetComponent<MenuItemController>().setSelected(true);
             }
-
-            menuItems[selection].GetComponent<MenuItemController>().setSelected(true);
         }
         else
         {
@@ -129,7 +137,14 @@ public class MenuController : MonoBehaviour
                 GameObject newItem = Instantiate(menuItem);
                 newItem.transform.SetParent(gameObject.transform);
                 newItem.transform.position = new Vector3(startX, startY - offsetY * i, newItem.transform.position.z);
-                newItem.GetComponent<MenuItemController>().SetState(menuItemData[i].name, menuItemData[i].cost, menuItemData[i].message, menuItemData[i].flavorText);
+                newItem.GetComponent<MenuItemController>().SetState(
+                    menuItemData[i].name,
+                    menuItemData[i].cost,
+                    menuItemData[i].message,
+                    menuItemData[i].flavorText,
+                    menuItemData[i].overrideColor
+                );
+                newItem.GetComponent<MenuItemController>().setItemEnabled(menuItemData[i].enabled);
                 newItems.Add(newItem);
             }
             menuItems = newItems;
@@ -206,15 +221,34 @@ public class MenuItemData
     public string name;
     public string cost;
     public string message;
-
     public string flavorText;
+    public bool enabled;
 
-    public MenuItemData(string name, string cost, string message, string flavorText = "")
+    public Color? overrideColor = null;
+
+    public MenuItemData(string name, string cost, string message, string flavorText = "", bool enabled = true)
     {
         this.name = name;
         this.cost = cost;
         this.message = message;
         this.flavorText = flavorText;
+        this.enabled = enabled;
+    }
+
+    public MenuItemData(string name, string cost, string message, bool enabled = true, Color? overrideColor = null)
+    {
+        this.name = name;
+        this.cost = cost;
+        this.message = message;
+        this.enabled = enabled;
+        this.overrideColor = overrideColor;
+    }
+    public MenuItemData(string name, string cost, string message)
+    {
+        this.name = name;
+        this.cost = cost;
+        this.message = message;
+        this.enabled = true;
     }
 }
 

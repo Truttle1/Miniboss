@@ -7,6 +7,20 @@ public class KonradUseItem : BattleAttack
     private Animator animator;
 
     [SerializeField] private GameObject useItemEyeCandy;
+
+    private GameObject monster = null;
+
+    public void setMonster(GameObject m)
+    {
+        if (m != null && m.GetComponent<Monster>() != null)
+        {
+            monster = m;
+        }
+        else
+        {
+            Debug.LogError("Provided GameObject is not a valid Monster.");
+        }
+    }
     void Start()
     {
         running = false;
@@ -28,15 +42,46 @@ public class KonradUseItem : BattleAttack
         createEyeCandy(item);
         yield return new WaitForSeconds(1.4f);
         animator.SetBool("item", false);
-        yield return new WaitForSeconds(.6f);
         
-        // Reset running state
-        running = false;
         if(item.GetItemEffect().effectType == ItemEffectType.Heal)
         {
+            // Reset running state
+            yield return new WaitForSeconds(.6f);
+            running = false;
             // Heal Konrad
             HasHP konradHP = GetComponent<HasHP>();
             konradHP.heal(item.GetItemEffect().value);
+        }
+        else if(item.GetItemEffect().effectType == ItemEffectType.SetStatusKonrad)
+        {
+            // Apply status effect to Konrad
+            Konrad konrad = GetComponent<Konrad>();
+            konrad.SetStatusEffect(item.GetItemEffect().konradStatusEffect, item.GetItemEffect().value);
+
+            if(item.GetItemEffect().konradStatusEffect == KonradStatusEffect.Caffeinated)
+            {
+                konrad.addSelections(1);
+            }
+            
+            // Reset running state
+            yield return new WaitForSeconds(.6f);
+            running = false;
+        }
+        else if(item.GetItemEffect().effectType == ItemEffectType.Attack)
+        {
+            switch(item.GetItemEffect().attack)
+            {
+                case ItemAttack.THROW_TOMATO:
+                    KonradTomatoThrow konradTomatoThrow = GetComponent<KonradTomatoThrow>();
+                    konradTomatoThrow.monster = monster;
+                    konradTomatoThrow.startAttack();
+                    while(konradTomatoThrow.isRunning())
+                    {
+                        yield return null;
+                    }
+                    break;
+            }
+            running = false;
         }
     }
     public override void startAttack()

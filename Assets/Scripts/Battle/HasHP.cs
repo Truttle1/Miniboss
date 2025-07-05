@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class HasHP : MonoBehaviour
@@ -7,6 +9,9 @@ public class HasHP : MonoBehaviour
     public int HP;
     public int maxHP;
     private bool blocking;
+
+    private float defense = 1;
+
     public int getHP()
     {
         return HP;
@@ -26,7 +31,7 @@ public class HasHP : MonoBehaviour
         this.blocking = blocking;
     }
 
-    public void damage(int damage)
+    public int damage(int damage)
     {
         if (blocking)
         {
@@ -36,11 +41,12 @@ public class HasHP : MonoBehaviour
         {
             damage = 0;
         }
-        HP -= damage;
+        HP -= (int)Math.Floor(damage / defense);
         if (HP <= 0)
         {
             HP = 0;
         }
+        return Math.Max((int)Math.Floor(damage / defense), 0);
     }
 
     public void heal(int heal)
@@ -77,5 +83,10 @@ public class HasHP : MonoBehaviour
         {
             this.HP = 0;
         }
+    }
+
+    public void setDefense(float defense)
+    {
+        this.defense = defense;
     }
 }
