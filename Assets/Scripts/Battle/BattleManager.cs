@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.Timeline.TimelinePlaybackControls;
 public class BattleManager : MonoBehaviour
 {
     public static BattleManager instance;
@@ -17,6 +16,10 @@ public class BattleManager : MonoBehaviour
     private bool startedEndText;
 
     private bool canLeaveBattle = false;
+
+    private int battleEXP = 0;
+
+    private int battleMoney = 0;
 
 
 
@@ -79,7 +82,13 @@ public class BattleManager : MonoBehaviour
             if(battleWon())
             {
                 startedEndText = true;
-                EventBus.Publish(new BigTextStartEvent(BigTextType.Win));
+                int oldLevel = GameManager.Instance.getLevel();
+                GameManager.Instance.addEXP(battleEXP);
+                bool levelUp = GameManager.Instance.getLevel() > oldLevel;
+                
+                EventBus.Publish(new BigTextStartEvent(BigTextType.Win, battleEXP, battleMoney, levelUp));
+                battleEXP = 0;
+                battleMoney = 0;
             }
             else if(konrad != null && konrad.isDead())
             {
@@ -95,7 +104,6 @@ public class BattleManager : MonoBehaviour
                 StartCoroutine(endEncounter());
             }
         }
-
     }
 
     private IEnumerator endEncounter()
@@ -162,6 +170,16 @@ public class BattleManager : MonoBehaviour
     private void OnPermitLeaveBattle(PermitLeaveBattleEvent leaveEvent)
     {
         canLeaveBattle = true;
+    }
+
+    public void addExp(int expToAdd)
+    {
+        battleEXP += expToAdd;
+    }
+
+    public void addMoney(int moneyToAdd)
+    {
+        battleMoney += moneyToAdd;
     }
 }
 

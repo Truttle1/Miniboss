@@ -27,8 +27,8 @@ RectTransform:
   m_GameObject: {fileID: 4749870023936931142}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.54, y: 1.54, z: 1.54}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7329561918104705959}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -230,9 +230,10 @@ MonoBehaviour:
   level: 1
   exp: 0
   expToNextLevel: 0000000019000000960000002c0100009001000058020000
+  levelHp: 00000000140000001e000000280000002d00000032000000
   money: 0
-  fade: {fileID: 0}
-  fadeDuration: 0.4
+  fade: {fileID: 4749870023936931142}
+  fadeDuration: 0.7
   lastBattleStatus: 0
   itemList:
   - name: Cola

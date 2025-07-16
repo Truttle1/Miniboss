@@ -71,6 +71,12 @@ public class KonradToasterGun : BattleAttack
                 monster.GetComponent<Knockback>().doKnockback(1.5f, knockbackTime, dmg);
             }
             yield return new WaitForSeconds(knockbackTime);
+
+            // Check if monster is dead
+            if(monster.GetComponent<HasHP>() != null && monster.GetComponent<HasHP>().getHP() <= 0)
+            {
+                break;
+            }
         }
         animator.SetBool("toast_launch", false);
         
@@ -81,9 +87,9 @@ public class KonradToasterGun : BattleAttack
         {
             monster.GetComponent<Monster>().setTarget(false);
         }
+        yield return new WaitForSeconds(0.75f);
         running = false;
         konrad.attackOver();
-        yield return new WaitForSeconds(2f);
     }
 
     public override void startAttack()

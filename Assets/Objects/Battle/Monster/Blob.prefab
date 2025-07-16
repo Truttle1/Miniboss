@@ -144,6 +144,8 @@ MonoBehaviour:
   attacks:
   - {fileID: 6214939685011576195}
   arrow: {fileID: 8252237481090955085}
+  exp: 4
+  money: 2
 --- !u!114 &5203993222393311881
 MonoBehaviour:
   m_ObjectHideFlags: 0

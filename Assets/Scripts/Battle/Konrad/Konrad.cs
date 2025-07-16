@@ -2,9 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.PackageManager;
-using UnityEditor.UI;
-using UnityEditor.VersionControl;
 using UnityEngine;
 
 public enum KonradStatusEffect
@@ -282,7 +279,10 @@ public class Konrad : BattleEntity
             }
         }
 
-        EventBus.Publish(new KonradHPChangeEvent(hp.getHP(), hp.getMaxHP()));
+        if(!battleFinished)
+        {
+            EventBus.Publish(new KonradHPChangeEvent(hp.getHP(), hp.getMaxHP()));
+        }
 
         if(gotInitialStats)
         {

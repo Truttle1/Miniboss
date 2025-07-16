@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public enum GameState
@@ -42,6 +43,16 @@ public class GameManager : MonoBehaviour
         600, // Level 5
     };
 
+    [SerializeField] private int[] levelHp = {
+        0,   // Level 0 (not used)
+        20,  // Level 1
+        30,  // Level 2
+        40,  // Level 3
+        45,  // Level 4
+        50,  // Level 5
+    };
+    
+
     [SerializeField] private int money = 0;
 
     [SerializeField] private GameObject fade;
@@ -53,6 +64,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private LastBattleStatus lastBattleStatus = LastBattleStatus.Victory;
 
     [SerializeField] public Item[] itemList;
+
 
     void Awake()
     {
@@ -75,7 +87,7 @@ public class GameManager : MonoBehaviour
             fadeImage = fade.GetComponent<Image>();
             if (fadeImage != null)
             {
-                fadeImage.color = new Color(0, 0, 0, 0);
+                fadeImage.color = new Color(0, 0, 0, 1);
             }
         }
         EventBus.Subscribe<FadeEvent>(OnFadeEvent);
@@ -138,9 +150,10 @@ public class GameManager : MonoBehaviour
         return exp;
     }
 
-    public void addEXP()
+    public void addEXP(int amount)
     {
-        exp++;
+
+        exp += amount;
         while (exp >= expToNextLevel[level])
         {
             levelUp();
@@ -151,6 +164,9 @@ public class GameManager : MonoBehaviour
     {
         // TODO: Implement level-up logic (e.g., increase max HP, grant new abilities, etc.)
         level++;
+        maxHP = levelHp[Mathf.Clamp(level, 1, levelHp.Length - 1)];
+        currentHP = maxHP;
+        EventBus.Publish(new KonradHPChangeEvent(maxHP, maxHP));
     }
 
     public int getMoney()
@@ -194,6 +210,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator FadeIn() 
     {
+        fadeImage.color = new Color(0, 0, 0, 1);
         float duration = fadeDuration;
         float elapsedTime = 0f;
 
@@ -204,12 +221,14 @@ public class GameManager : MonoBehaviour
             fadeImage.color = new Color(0, 0, 0, alpha);
             yield return null;
         }
+        fadeImage.color = new Color(0, 0, 0, 0);
 
         EventBus.Publish(new FadeEndEvent(true)); // Notify that fade-in is complete
     }
 
     private IEnumerator FadeOut() 
     {
+        fadeImage.color = new Color(0, 0, 0, 0);
         float duration = fadeDuration;
         float elapsedTime = 0f;
 
@@ -220,6 +239,8 @@ public class GameManager : MonoBehaviour
             fadeImage.color = new Color(0, 0, 0, alpha);
             yield return null;
         }
+        fadeImage.color = new Color(0, 0, 0, 1);
+
         EventBus.Publish(new FadeEndEvent(false)); // Notify that fade-out is complete
     }
 
@@ -249,6 +270,7 @@ public class GameManager : MonoBehaviour
         }
         return null; // Item not found
     }
+    
 }
 
 public class FadeEvent

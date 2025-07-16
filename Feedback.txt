@@ -1,1 +1,2 @@
 - Jump button: Should it be variable height based on how long you press the key?
+- Strikethrough on crossed out elements would be easier to see

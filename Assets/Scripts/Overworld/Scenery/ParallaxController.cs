@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -5,9 +6,6 @@ using UnityEngine;
 
 public class ParallaxController : MonoBehaviour
 {
-    [SerializeField]
-    private Camera camera;
-
     [SerializeField]
     private GameObject background;
 

@@ -52,9 +52,9 @@ public class KonradTomatoThrow : BattleAttack
         {
             monster.GetComponent<Monster>().setTarget(false);
         }
+        yield return new WaitForSeconds(0.75f);
         running = false;
         konrad.attackOver();
-        yield return new WaitForSeconds(2f);
 
     }
 

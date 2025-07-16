@@ -18,6 +18,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float iFrameDuration = 5f;
     [SerializeField] private float translucentAlpha = 0.5f;
 
+    private bool autoMove = false;
+    private float autoMoveSpeed = 0f;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -26,25 +29,48 @@ public class PlayerMovement : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
+    private bool IsOnGround()
+    {
+        for(int i = 0; i < 100; i++)
+        {
+            Vector2 rayOrigin = new Vector2(boxCollider.bounds.min.x + ((i - 50) / 50f) * boxCollider.bounds.size.x, boxCollider.bounds.min.y);
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down, 0.1f, LayerMask.GetMask("Wall"));
+            if(hit.collider != null)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     void Update()
     {
         float horizontalMovement = Input.GetAxis("Horizontal") * MAX_HORIZ_SPEED;
         float verticalMovement = rb.velocity.y;
-        bool onGround = Physics2D.Raycast(transform.position, Vector2.down, boxCollider.bounds.extents.y + 0.1f, LayerMask.GetMask("Wall"));
-        if (TextBox.instance.disablingMovement())
+        //bool onGround = Physics2D.Raycast(transform.position, Vector2.down, boxCollider.bounds.extents.y + 0.1f, LayerMask.GetMask("Wall"));
+        bool onGround = IsOnGround();
+        
+        if(autoMove)
         {
-            rb.velocity = new Vector2(0, verticalMovement);
-            animator.SetBool("run", false);
-            animator.SetBool("jump", false);
-            animator.SetBool("land", false);
-            return;
+            horizontalMovement = autoMoveSpeed;
         }
-
-        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+        else
         {
-            if(onGround)
+            if (TextBox.instance.disablingMovement())
             {
-                verticalMovement = JUMP;
+                rb.velocity = new Vector2(0, verticalMovement);
+                animator.SetBool("run", false);
+                animator.SetBool("jump", false);
+                animator.SetBool("land", false);
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+            {
+                if(onGround)
+                {
+                    verticalMovement = JUMP;
+                }
             }
         }
 
@@ -121,5 +147,33 @@ public class PlayerMovement : MonoBehaviour
         Physics2D.IgnoreLayerCollision(gameObject.layer, enemyLayerIndex, false);
 
         iFrame = false;
+    }
+
+    public void SetFacingLeft(bool facingLeft)
+    {
+        this.facingLeft = facingLeft;
+        if (facingLeft)
+        {
+            transform.localScale = new Vector2(1, 1);
+        }
+        else
+        {
+            transform.localScale = new Vector2(-1, 1);
+        }
+    }
+
+    public void DisableAutoMove()
+    {
+        if (autoMove)
+        {
+            autoMove = false;
+            autoMoveSpeed = 0f;
+        }
+    }
+
+    public void EnableAutoMove(float speed)
+    {
+        autoMove = true;
+        autoMoveSpeed = speed;
     }
 }

@@ -21,7 +21,14 @@ public class CameraMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player_position = GameObject.Find("Konrad").transform;
+        if(GameObject.Find("Konrad"))
+        {
+            player_position = GameObject.Find("Konrad").transform;
+        }
+        if (player_position == null)
+        {
+            return;
+        }
         x_diff = transform.position.x - player_position.position.x;
         y_diff = transform.position.y - player_position.position.y;
     }
@@ -29,7 +36,13 @@ public class CameraMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (moving)
+        if(player_position == null && GameObject.Find("Konrad"))
+        {
+            player_position = GameObject.Find("Konrad").transform;
+            return;
+        }
+
+        if (moving && player_position != null)
         {
             float new_x = player_position.position.x + x_diff;
             float new_y = player_position.position.y + y_diff;

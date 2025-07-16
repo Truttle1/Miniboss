@@ -13,12 +13,14 @@ public class OverworldManager : MonoBehaviour
     private bool startedEncounter = false;
 
     [SerializeField] private float fadeDelay = 0.5f; // Duration of the fade effect
+    [SerializeField] private string currentEntranceLabel = "default";
 
     void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);  // Persist across scenes
         }
         else
         {
@@ -63,6 +65,7 @@ public class OverworldManager : MonoBehaviour
 
     private IEnumerator StartEncounter(EncounterStartEvent encounterEvent)
     {
+        currentEntranceLabel = "";
         startedEncounter = true;
         GameManager.Instance.setEncounterSource(encounterEvent.source);
         GameManager.Instance.setEncounter(encounterEvent.encounterPrefab);
@@ -90,6 +93,34 @@ public class OverworldManager : MonoBehaviour
         GameManager.Instance.setEncounter(null);
         UnfreezeAll();
         EventBus.Publish(new EncounterEndEvent());
+        EventBus.Publish(new FadeEvent(true));
+    }
+
+    
+    public void SetEntranceLabel(string label)
+    {
+        currentEntranceLabel = label;
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        StartCoroutine(SlightDelayThenEntrance());
+    }
+
+    private IEnumerator SlightDelayThenEntrance()
+    {
+        yield return null;
+        EventBus.Publish(new KonradEntranceEvent(currentEntranceLabel));
         EventBus.Publish(new FadeEvent(true));
     }
 

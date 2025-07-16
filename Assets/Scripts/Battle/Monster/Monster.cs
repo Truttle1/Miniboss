@@ -9,6 +9,9 @@ public class Monster : BattleEntity
     public BattleAttack[] attacks;
     public GameObject arrow;
 
+    public int exp;
+    public int money;
+
 
     private MonsterHealthbar healthbar;
     private BattleAttack currentAttack;
@@ -57,6 +60,8 @@ public class Monster : BattleEntity
 
     private IEnumerator die()
     {
+        BattleManager.instance.addExp(exp);
+        BattleManager.instance.addMoney(money);
         yield return new WaitForSeconds(1.0f);
         Destroy(gameObject);
     }

@@ -144,6 +144,8 @@ MonoBehaviour:
   attacks:
   - {fileID: 7580700965847424086}
   arrow: {fileID: 8252237481090955085}
+  exp: 8
+  money: 4
 --- !u!114 &5203993222393311881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,6 +217,7 @@ MonoBehaviour:
   - 1
   - 1
   - 1.5
+  poisonTurns: 3
 --- !u!1001 &4945456921893878401
 PrefabInstance:
   m_ObjectHideFlags: 0
