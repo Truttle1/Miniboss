@@ -65,6 +65,12 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] public Item[] itemList;
 
+    [SerializeField] private AudioClip defaultBattleMusic;
+
+    private AudioClip battleMusic;
+
+    private AudioSource musicSource;
+
 
     void Awake()
     {
@@ -91,7 +97,34 @@ public class GameManager : MonoBehaviour
             }
         }
         EventBus.Subscribe<FadeEvent>(OnFadeEvent);
+        musicSource = gameObject.GetComponent<AudioSource>();
+        gameState = GameState.Overworld;
+    }
 
+    public void PlayMusic(AudioClip clip)
+    {
+        if (musicSource == null) return;
+
+        if (clip == null)
+        {
+            clip = defaultBattleMusic;
+        }
+
+        if (musicSource.clip == clip && musicSource.isPlaying) return;
+
+        musicSource.clip = clip;
+        musicSource.loop = true;
+        musicSource.Play();
+    }
+
+    public AudioClip GetPlayingMusic()
+    {
+        return musicSource != null && musicSource.isPlaying ? musicSource.clip : null;
+    }
+
+    public AudioClip GetBattleMusic()
+    {
+        return battleMusic != null ? battleMusic : defaultBattleMusic;
     }
 
     public void setHPStats(int max, int current)
@@ -110,9 +143,17 @@ public class GameManager : MonoBehaviour
         return currentHP;
     }
 
-    public void setEncounter(GameObject encounter)
+    public void setEncounter(GameObject encounter, AudioClip battleMusic = null)
     {
         this.encounter = encounter;
+        if (battleMusic != null)
+        {
+            this.battleMusic = battleMusic;
+        }
+        else
+        {
+            this.battleMusic = defaultBattleMusic;
+        }
     }
 
     public GameObject getEncounter()

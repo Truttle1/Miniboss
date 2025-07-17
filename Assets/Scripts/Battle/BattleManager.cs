@@ -43,6 +43,8 @@ public class BattleManager : MonoBehaviour
         
         GameObject encounterPrefab = GameManager.Instance.getEncounter();
         GameObject encounterInstance = Instantiate(encounterPrefab);
+        GameManager.Instance.PlayMusic(GameManager.Instance.GetBattleMusic());
+
 
         encounterInstance.name = "Encounter";
         List<BattleEntity> allEntities = new List<BattleEntity>(entities);

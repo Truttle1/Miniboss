@@ -832,6 +832,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7872540314179326988, guid: 8e8d32418801ee849b146e9a2a311387, type: 3}
     - target: {fileID: 6959577460358395847, guid: b893a9e16c563f24cbb3d21b2da4a8dc, type: 3}
+      propertyPath: defaultBattleMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 55b8e69a50194bb49bf0a4147702897b, type: 3}
+    - target: {fileID: 6959577460358395847, guid: b893a9e16c563f24cbb3d21b2da4a8dc, type: 3}
       propertyPath: itemList.Array.data[4].description
       value: BOOOO!!!! Often thrown at things the thrower does not like.\\Throws
         one tomato that does a lot of damage without using any E!

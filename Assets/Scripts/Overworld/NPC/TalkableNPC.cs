@@ -19,14 +19,30 @@ public class TalkableNPC : MonoBehaviour
     {
         talker = GetComponent<Talker>();
         animator = GetComponent<Animator>();
-        playerPos = GameObject.Find("Konrad").transform;
+        if(GameObject.Find("Konrad"))
+        {
+            playerPos = GameObject.Find("Konrad").transform;
+        }
     }
 
     void Update()
     {
+        if (playerPos == null)
+        {
+            if(GameObject.Find("Konrad"))
+            {
+                playerPos = GameObject.Find("Konrad").transform;
+            }
+            else
+            {
+                return;
+            }
+        }
+
         if (!TextBox.instance.showingText())
         {
-            if(Vector3.Distance(playerPos.position, gameObject.transform.position) < range)
+            float distance = Vector2.Distance(new Vector2(playerPos.position.x, playerPos.position.y), new Vector2(transform.position.x, transform.position.y));
+            if(distance < range)
             {
                 if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
                 {

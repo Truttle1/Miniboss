@@ -40,6 +40,11 @@ public class TextBox : MonoBehaviour
         dialogPairs.Enqueue(pair);
     }
 
+    private string ReplaceBackslashWithNewline(string input)
+    {
+        return input.Replace("\\", "\n");
+    }
+
     private IEnumerator scrollText()
     {
         while(currentText != currentPair.text)
@@ -80,6 +85,7 @@ public class TextBox : MonoBehaviour
         if(dialogPairs.Count > 0 && currentPair == null)
         {
             currentPair = dialogPairs.Dequeue();
+            currentPair.text = ReplaceBackslashWithNewline(currentPair.text);
             currentText = "";
             position = 0;
             StartCoroutine(scrollText());

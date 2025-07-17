@@ -69,6 +69,7 @@ public class OverworldManager : MonoBehaviour
         startedEncounter = true;
         GameManager.Instance.setEncounterSource(encounterEvent.source);
         GameManager.Instance.setEncounter(encounterEvent.encounterPrefab);
+        GameManager.Instance.setGameState(GameState.Battle);
         FreezeAll();
         yield return new WaitForSeconds(fadeDelay);
         SceneManager.LoadSceneAsync("Battle", LoadSceneMode.Additive);
@@ -94,6 +95,8 @@ public class OverworldManager : MonoBehaviour
         UnfreezeAll();
         EventBus.Publish(new EncounterEndEvent());
         EventBus.Publish(new FadeEvent(true));
+        GameManager.Instance.setGameState(GameState.Overworld);
+        GameManager.Instance.PlayMusic(RoomSettings.Instance.GetMusic());
     }
 
     
@@ -114,7 +117,12 @@ public class OverworldManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        StartCoroutine(SlightDelayThenEntrance());
+        Debug.Log($"Game state is {GameManager.Instance.getGameState()}");
+        
+        if(GameManager.Instance.getGameState() == GameState.Overworld)
+        {
+            StartCoroutine(SlightDelayThenEntrance());
+        }
     }
 
     private IEnumerator SlightDelayThenEntrance()
@@ -122,6 +130,12 @@ public class OverworldManager : MonoBehaviour
         yield return null;
         EventBus.Publish(new KonradEntranceEvent(currentEntranceLabel));
         EventBus.Publish(new FadeEvent(true));
+
+        // Change the music track if this room has a different one.
+        if(GameManager.Instance.GetPlayingMusic() != RoomSettings.Instance.GetMusic())
+        {
+            GameManager.Instance.PlayMusic(RoomSettings.Instance.GetMusic());
+        }
     }
 
 }
