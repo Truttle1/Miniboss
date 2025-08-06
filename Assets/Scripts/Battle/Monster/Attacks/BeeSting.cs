@@ -16,6 +16,9 @@ public class BeeSting : BattleAttack
     [SerializeField]
     private int poisonTurns = 3;
 
+    [SerializeField] private AudioClip stingSound;
+    [SerializeField] private AudioClip stingSoundPoison;
+
     void Start()
     {
         konrad = GameObject.FindWithTag("Player");
@@ -51,6 +54,11 @@ public class BeeSting : BattleAttack
         if(attackSpeed != 1 && !konrad.GetComponent<HasHP>().isBlocking())
         {
             konrad.GetComponent<Konrad>().SetStatusEffect(KonradStatusEffect.Poison, poisonTurns);
+            EventBus.Publish(new PlaySFXEvent(stingSoundPoison));
+        }
+        else 
+        {    
+            EventBus.Publish(new PlaySFXEvent(stingSound));
         }
 
         if (konrad.GetComponent<Knockback>() != null)
@@ -76,6 +84,7 @@ public class BeeSting : BattleAttack
         animator.SetBool("moving", false);
         rb.MovePosition(start);
         transform.position = new Vector3(start.x, start.y, -1f);
+        
         running = false;
     }
 

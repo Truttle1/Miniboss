@@ -34,7 +34,7 @@ public class CameraMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(player_position == null && GameObject.Find("Konrad"))
         {

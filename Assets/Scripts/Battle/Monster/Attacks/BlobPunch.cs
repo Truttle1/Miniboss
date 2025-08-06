@@ -13,6 +13,8 @@ public class BlobPunch : BattleAttack
     private Vector3 start;
     private Rigidbody2D rb;
 
+    [SerializeField] private AudioClip punchSound;
+
     void Start()
     {
         konrad = GameObject.FindWithTag("Player");
@@ -39,6 +41,7 @@ public class BlobPunch : BattleAttack
         animator.SetBool("punching", true);
         yield return new WaitForSeconds((124 / 60.0f));
         int dmg = konrad.GetComponent<HasHP>().damage(GetComponent<Monster>().attack * 2);
+        EventBus.Publish(new PlaySFXEvent(punchSound));
 
         if (konrad.GetComponent<Knockback>() != null)
         {

@@ -10,7 +10,8 @@ TrueTypeFontImporter:
   includeFontData: 1
   fontNames:
   - Granstander Clean
-  fallbackFontReferences: []
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: c072e63c575cae24ca5596d937a4876d, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1

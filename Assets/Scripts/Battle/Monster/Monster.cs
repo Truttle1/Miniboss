@@ -19,6 +19,7 @@ public class Monster : BattleEntity
     private bool hoveredByMenu = false;
     private bool dead = false;
 
+
     private void Start()
     {
         animator = GetComponent<Animator>();

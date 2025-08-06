@@ -71,6 +71,10 @@ public class GameManager : MonoBehaviour
 
     private AudioSource musicSource;
 
+    [SerializeField] private AudioSource sfxSource;
+
+    [SerializeField] private bool startInBattle = false;
+
 
     void Awake()
     {
@@ -97,8 +101,20 @@ public class GameManager : MonoBehaviour
             }
         }
         EventBus.Subscribe<FadeEvent>(OnFadeEvent);
+        EventBus.Subscribe<PlaySFXEvent>(e => PlaySFX(e.clip));
         musicSource = gameObject.GetComponent<AudioSource>();
         gameState = GameState.Overworld;
+        if(startInBattle) {
+            PlayMusic(defaultBattleMusic);
+        }
+    }
+
+    private void PlaySFX(AudioClip clip)
+    {
+        if (sfxSource == null) return;
+        sfxSource.clip = clip;
+        sfxSource.loop = false;
+        sfxSource.Play();
     }
 
     public void PlayMusic(AudioClip clip)
@@ -331,5 +347,15 @@ public class FadeEndEvent
     public FadeEndEvent(bool fadeIn)
     {
         this.fadeIn = fadeIn;
+    }
+}
+
+public class PlaySFXEvent
+{
+    public AudioClip clip;
+
+    public PlaySFXEvent(AudioClip clip)
+    {
+        this.clip = clip;
     }
 }

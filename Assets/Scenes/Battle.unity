@@ -123,71 +123,22 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &116241174 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8724987214547156097, guid: 9ecbf22cd9ba9394cb44203ada1d82e6, type: 3}
+--- !u!114 &116241182 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2446706459369968618, guid: 9ecbf22cd9ba9394cb44203ada1d82e6, type: 3}
   m_PrefabInstance: {fileID: 2026253197543546499}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &116241182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 116241174}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4d35033d5edaf6498c7e4d2ba87fcf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalOverride: {fileID: 22100000, guid: fdb3a097228d4fd4a93084aa7f4141c3, type: 2}
-  poisonOverride: {fileID: 22100000, guid: 110e388edd7f7c1478f2c0b6a1601a9d, type: 2}
-  caffeinatedOverride: {fileID: 22100000, guid: 36e50692eec0b72449bfe8bf7f36c391, type: 2}
-  relaxedOverride: {fileID: 22100000, guid: 97ea5e6ae0893fb44ad0c073d095b348, type: 2}
-  unhingedOverride: {fileID: 22100000, guid: 0e0a5bb148609ba48833c83e8e4de1fb, type: 2}
-  attack: 1
-  statusEffect: 0
---- !u!114 &116241191
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+--- !u!82 &815502970 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 626030708199437775, guid: b893a9e16c563f24cbb3d21b2da4a8dc, type: 3}
+  m_PrefabInstance: {fileID: 7675681666123345252}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 116241174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3eb377582e9edc9498b004f30e3c7d4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  monster: {fileID: 0}
-  projectile: {fileID: 5912946397486573135, guid: 5556297549246334f817a4284261c546, type: 3}
---- !u!114 &116241200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 116241174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb0194540d0f7604cbc6373bdce76e42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &116241201
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 116241174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c986f1c85c4ea444389d2e4d217e4a39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  monster: {fileID: 0}
-  projectile: {fileID: 5912946397486573135, guid: 3451cf7c5bf2c044396d65b85644992e, type: 3}
-  damageMultiplier: 4
 --- !u!114 &1091541436 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2739582752018659703, guid: 72d03c97c8fb6eb4faa5c41deb267779, type: 3}
@@ -646,6 +597,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2198264351917439219, guid: 72d03c97c8fb6eb4faa5c41deb267779, type: 3}
+      propertyPath: backSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 63a2d39eab1fea64b8523066e2a586b2, type: 3}
+    - target: {fileID: 2198264351917439219, guid: 72d03c97c8fb6eb4faa5c41deb267779, type: 3}
+      propertyPath: selectSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 63a2d39eab1fea64b8523066e2a586b2, type: 3}
+    - target: {fileID: 2198264351917439219, guid: 72d03c97c8fb6eb4faa5c41deb267779, type: 3}
+      propertyPath: moveSelectionSound
+      value: 
+      objectReference: {fileID: 8300000, guid: a842ed1a8106b1847964e21b5d031e93, type: 3}
     - target: {fileID: 3857042311866736412, guid: 72d03c97c8fb6eb4faa5c41deb267779, type: 3}
       propertyPath: entities.Array.data[0]
       value: 
@@ -702,14 +665,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 335702731602230258, guid: 9ecbf22cd9ba9394cb44203ada1d82e6, type: 3}
-      propertyPath: useItemEyeCandy
-      value: 
-      objectReference: {fileID: 3998118614374273242, guid: ce9d6d9c5dbcac442af3f01ded75c756, type: 3}
-    - target: {fileID: 6566041168960068792, guid: 9ecbf22cd9ba9394cb44203ada1d82e6, type: 3}
-      propertyPath: monster
-      value: 
+    - target: {fileID: 1458018588984061426, guid: 9ecbf22cd9ba9394cb44203ada1d82e6, type: 3}
+      propertyPath: m_Color.a
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6566041168960068792, guid: 9ecbf22cd9ba9394cb44203ada1d82e6, type: 3}
+      propertyPath: failSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 13cb8c991f508474dbe3c177aed45bf4, type: 3}
+    - target: {fileID: 6566041168960068792, guid: 9ecbf22cd9ba9394cb44203ada1d82e6, type: 3}
+      propertyPath: successSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 2200d94faae15e14b880a7e817fd6c1e, type: 3}
     - target: {fileID: 7028753160633212534, guid: 9ecbf22cd9ba9394cb44203ada1d82e6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6
@@ -750,30 +717,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7591552740427598621, guid: 9ecbf22cd9ba9394cb44203ada1d82e6, type: 3}
+      propertyPath: hitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 719a9bce8390f3846b3588f242706854, type: 3}
+    - target: {fileID: 7591552740427598621, guid: 9ecbf22cd9ba9394cb44203ada1d82e6, type: 3}
+      propertyPath: shootSound
+      value: 
+      objectReference: {fileID: 8300000, guid: a2d954a4956ef224f8e687fb5bd237a8, type: 3}
     - target: {fileID: 8724987214547156097, guid: 9ecbf22cd9ba9394cb44203ada1d82e6, type: 3}
       propertyPath: m_Name
       value: Konrad
       objectReference: {fileID: 0}
-    - target: {fileID: 8724987214547156097, guid: 9ecbf22cd9ba9394cb44203ada1d82e6, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8724987214547156097, guid: 9ecbf22cd9ba9394cb44203ada1d82e6, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 116241182}
-    - targetCorrespondingSourceObject: {fileID: 8724987214547156097, guid: 9ecbf22cd9ba9394cb44203ada1d82e6, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 116241191}
-    - targetCorrespondingSourceObject: {fileID: 8724987214547156097, guid: 9ecbf22cd9ba9394cb44203ada1d82e6, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 116241200}
-    - targetCorrespondingSourceObject: {fileID: 8724987214547156097, guid: 9ecbf22cd9ba9394cb44203ada1d82e6, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 116241201}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ecbf22cd9ba9394cb44203ada1d82e6, type: 3}
 --- !u!1001 &7675681666123345252
 PrefabInstance:
@@ -832,21 +791,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7872540314179326988, guid: 8e8d32418801ee849b146e9a2a311387, type: 3}
     - target: {fileID: 6959577460358395847, guid: b893a9e16c563f24cbb3d21b2da4a8dc, type: 3}
+      propertyPath: sfxSource
+      value: 
+      objectReference: {fileID: 815502970}
+    - target: {fileID: 6959577460358395847, guid: b893a9e16c563f24cbb3d21b2da4a8dc, type: 3}
       propertyPath: defaultBattleMusic
       value: 
       objectReference: {fileID: 8300000, guid: 55b8e69a50194bb49bf0a4147702897b, type: 3}
     - target: {fileID: 6959577460358395847, guid: b893a9e16c563f24cbb3d21b2da4a8dc, type: 3}
-      propertyPath: itemList.Array.data[4].description
-      value: BOOOO!!!! Often thrown at things the thrower does not like.\\Throws
-        one tomato that does a lot of damage without using any E!
-      objectReference: {fileID: 0}
-    - target: {fileID: 6959577460358395847, guid: b893a9e16c563f24cbb3d21b2da4a8dc, type: 3}
       propertyPath: itemList.Array.data[3].itemEffect.value
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6959577460358395847, guid: b893a9e16c563f24cbb3d21b2da4a8dc, type: 3}
-      propertyPath: itemList.Array.data[4].itemEffect.attack
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

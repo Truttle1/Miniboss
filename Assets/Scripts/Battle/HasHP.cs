@@ -31,7 +31,7 @@ public class HasHP : MonoBehaviour
         this.blocking = blocking;
     }
 
-    public int damage(int damage)
+    public int damage(int damage, bool showBang = true)
     {
         if (blocking)
         {
@@ -45,6 +45,11 @@ public class HasHP : MonoBehaviour
         if (HP <= 0)
         {
             HP = 0;
+        }
+
+        if(GetComponent<BattleEntity>() != null && showBang)
+        {
+            GetComponent<BattleEntity>().SpawnBang((int)Math.Floor(damage / defense));
         }
         return Math.Max((int)Math.Floor(damage / defense), 0);
     }

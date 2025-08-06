@@ -139,6 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 376eba2e99504504a8bbfb5bdf00b1ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bangSpawnPoint: {fileID: 2076547315428824729}
   menuName: 
   attack: 1
   attacks:
@@ -170,6 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a124a9946ce190442b40c45bd951a44d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  punchSound: {fileID: 8300000, guid: 719a9bce8390f3846b3588f242706854, type: 3}
 --- !u!50 &2616123682438006412
 Rigidbody2D:
   serializedVersion: 4
@@ -220,6 +222,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6279860413108486875}
     m_Modifications:
+    - target: {fileID: 3568790839537295983, guid: d0adb72d6a604af4aafb2df35d1835a6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4317828675408656909, guid: d0adb72d6a604af4aafb2df35d1835a6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -274,6 +280,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5913142386350755859, guid: d0adb72d6a604af4aafb2df35d1835a6, type: 3}
   m_PrefabInstance: {fileID: 4945456921893878401}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2076547315428824729 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6372780485505330200, guid: d0adb72d6a604af4aafb2df35d1835a6, type: 3}
+  m_PrefabInstance: {fileID: 4945456921893878401}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 835a09ce5534e9f48b519c656a5cb399, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2222121639773360079 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6518754877229593934, guid: d0adb72d6a604af4aafb2df35d1835a6, type: 3}

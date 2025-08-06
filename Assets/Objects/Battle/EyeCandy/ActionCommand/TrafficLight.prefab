@@ -104,3 +104,7 @@ MonoBehaviour:
   trafficSuccess: {fileID: 21300000, guid: 367c498be274f3142b5bd415ac4c59d1, type: 3}
   trafficFailLate: {fileID: 21300000, guid: 0dd7ddf1ce254d94185ec7880113e0a0, type: 3}
   trafficFailEarly: {fileID: 21300000, guid: 8da07b68c5eba95419da86892cdbc7f0, type: 3}
+  successSound: {fileID: 8300000, guid: e33b069be43af5a4ea634a9b63a7c426, type: 3}
+  failSound: {fileID: 8300000, guid: e7a3e6c0719089741a5113a60b105353, type: 3}
+  lightSound0: {fileID: 8300000, guid: d9ff94c479956f94094dd402f02c5336, type: 3}
+  lightSound1: {fileID: 8300000, guid: 37c6fd0dee871f94fbb07dc6117a7678, type: 3}

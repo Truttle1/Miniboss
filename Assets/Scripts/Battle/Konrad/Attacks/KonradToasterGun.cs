@@ -12,6 +12,9 @@ public class KonradToasterGun : BattleAttack
 
     private Konrad konrad;
 
+    [SerializeField] private AudioClip shootSound;
+    [SerializeField] private AudioClip hitSound;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -57,12 +60,14 @@ public class KonradToasterGun : BattleAttack
             float knockbackTime = .3f;
             float goalTime = Time.time + duration;
             Vector3 startPos = p.transform.position;
+            EventBus.Publish(new PlaySFXEvent(shootSound));
             while(Time.time < goalTime)
             {
                 float progress = 1f - (goalTime - Time.time) / duration;
                 p.transform.position = Vector3.Lerp(startPos, monster.transform.position, progress);
                 yield return null;
             }
+            EventBus.Publish(new PlaySFXEvent(hitSound));
             Destroy(p);
             int dmg = 
             monster.GetComponent<HasHP>().damage((int)(GetComponent<Konrad>().GetAttack() * 2));

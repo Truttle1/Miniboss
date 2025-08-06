@@ -7,6 +7,8 @@ public abstract class BattleEntity : MonoBehaviour
     protected Animator animator;
     protected bool takingTurn;
     
+    [SerializeField] private BangSpawnPoint bangSpawnPoint;
+    
     public void setHurtAnimation(bool hurt)
     {
         if (hurt)
@@ -29,6 +31,20 @@ public abstract class BattleEntity : MonoBehaviour
     public bool isTakingTurn()
     {
         return takingTurn;
+    }
+
+    
+
+    public void SpawnBang(int damage)
+    {
+        if (bangSpawnPoint != null)
+        {
+            bangSpawnPoint.SpawnBang(damage);
+        }
+        else
+        {
+            Debug.LogWarning("BangSpawnPoint is not assigned in the inspector.");
+        }
     }
 
 }

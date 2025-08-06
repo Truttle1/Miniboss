@@ -209,6 +209,10 @@ PrefabInstance:
       propertyPath: gameState
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6959577460358395847, guid: b893a9e16c563f24cbb3d21b2da4a8dc, type: 3}
+      propertyPath: defaultBattleMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 55b8e69a50194bb49bf0a4147702897b, type: 3}
     - target: {fileID: 7584173048279428209, guid: b893a9e16c563f24cbb3d21b2da4a8dc, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.54

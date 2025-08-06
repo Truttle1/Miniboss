@@ -64,6 +64,8 @@ MonoBehaviour:
   rightmostGreen: -2.5
   speed: 12
   offsetX: 2.7
+  successSound: {fileID: 8300000, guid: e33b069be43af5a4ea634a9b63a7c426, type: 3}
+  failSound: {fileID: 8300000, guid: e7a3e6c0719089741a5113a60b105353, type: 3}
 --- !u!1 &5275015197791913020
 GameObject:
   m_ObjectHideFlags: 0

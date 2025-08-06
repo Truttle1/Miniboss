@@ -19,6 +19,11 @@ public class TrafficLight : MonoBehaviour
     private bool good;
     private bool success;
     private Coroutine coroutine;
+
+    [SerializeField] private AudioClip successSound;
+    [SerializeField] private AudioClip failSound;
+    [SerializeField] private AudioClip lightSound0;
+    [SerializeField] private AudioClip lightSound1;
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
@@ -43,10 +48,13 @@ public class TrafficLight : MonoBehaviour
         good = false;
         sr.sprite = traffic0;
         yield return new WaitForSeconds(delay);
+        AudioSource.PlayClipAtPoint(lightSound0, Camera.main.transform.position);
         sr.sprite = traffic1;
         yield return new WaitForSeconds(delay);
+        AudioSource.PlayClipAtPoint(lightSound0, Camera.main.transform.position);
         sr.sprite = traffic2;
         yield return new WaitForSeconds(delay);
+        AudioSource.PlayClipAtPoint(lightSound1, Camera.main.transform.position);
         good = true;
         sr.sprite = trafficEnd;
         yield return new WaitForSeconds(delay);
@@ -57,6 +65,14 @@ public class TrafficLight : MonoBehaviour
 
     private IEnumerator AfterCommand()
     {
+        if(success)
+        {
+            AudioSource.PlayClipAtPoint(successSound, Camera.main.transform.position);
+        }
+        else
+        {
+            AudioSource.PlayClipAtPoint(failSound, Camera.main.transform.position);
+        }
         running = false;
         yield return new WaitForSeconds(.7f);
         sr.enabled = false;

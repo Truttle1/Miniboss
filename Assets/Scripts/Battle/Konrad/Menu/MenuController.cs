@@ -29,6 +29,10 @@ public class MenuController : MonoBehaviour
 
     public StatusBarController statusBar;
 
+    [SerializeField] private AudioClip moveSelectionSound;
+    [SerializeField] private AudioClip selectSound;
+    [SerializeField] private AudioClip backSound;
+
     
     private void Start()
     {
@@ -59,6 +63,7 @@ public class MenuController : MonoBehaviour
                 
                 SetFlavorText(menuItems[selection].GetComponent<MenuItemController>().getFlavorText());
                 RefreshMenuDisplay();
+                EventBus.Publish(new PlaySFXEvent(moveSelectionSound));
             }
             if (Input.GetKeyDown(KeyCode.DownArrow))
             {
@@ -78,6 +83,7 @@ public class MenuController : MonoBehaviour
                 
                 SetFlavorText(menuItems[selection].GetComponent<MenuItemController>().getFlavorText());
                 RefreshMenuDisplay();
+                EventBus.Publish(new PlaySFXEvent(moveSelectionSound));
             }
 
             if(!StatusBarController.instance.isRunning())
@@ -85,15 +91,18 @@ public class MenuController : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
                 {
                     EventBus.Publish(new MenuItemSelectEvent(menuItems[selection].GetComponent<MenuItemController>().getMessage()));
+                
+                    EventBus.Publish(new PlaySFXEvent(selectSound));
                 }
 
                 if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
                 {
                     EventBus.Publish(new MenuItemSelectEvent("BACK"));
+                    EventBus.Publish(new PlaySFXEvent(backSound));
                 }
             }
 
-            if(menuItems[selection] != null && menuItems[selection].GetComponent<MenuItemController>() != null)
+            if(menuItems != null && menuItems[selection] != null && menuItems[selection].GetComponent<MenuItemController>() != null)
             {
                 menuItems[selection].GetComponent<MenuItemController>().setSelected(true);
             }

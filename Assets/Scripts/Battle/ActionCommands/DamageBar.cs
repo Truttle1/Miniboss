@@ -31,6 +31,10 @@ public class DamageBar : MonoBehaviour
 
     public float offsetX = 2.7f;
 
+    [SerializeField] private AudioClip successSound;
+    [SerializeField] private AudioClip failSound;
+    
+
     void Start()
     {
         running = false;
@@ -62,6 +66,14 @@ public class DamageBar : MonoBehaviour
             case 3:
                 stSprite = stGreat;
                 break;
+        }
+        if(amount > 2)
+        {
+            AudioSource.PlayClipAtPoint(successSound, Camera.main.transform.position);
+        }
+        else
+        {
+            AudioSource.PlayClipAtPoint(failSound, Camera.main.transform.position);
         }
         successText.enabled = true;
         successText.sprite = stSprite;

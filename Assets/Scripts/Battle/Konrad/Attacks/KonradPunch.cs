@@ -16,6 +16,9 @@ public class KonradPunch : BattleAttack
 
     private Konrad konrad;
 
+    [SerializeField] private AudioClip successSound;
+    [SerializeField] private AudioClip failSound;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -76,10 +79,12 @@ public class KonradPunch : BattleAttack
         if(success)
         {
             dmg = monster.GetComponent<HasHP>().damage((int)(GetComponent<Konrad>().GetAttack() * 2));
+            EventBus.Publish(new PlaySFXEvent(successSound));
         }
         else
         { 
             dmg = monster.GetComponent<HasHP>().damage((int)(GetComponent<Konrad>().GetAttack() * 1));
+            EventBus.Publish(new PlaySFXEvent(failSound));
         }
 
         if(monster.GetComponent<Knockback>() != null)

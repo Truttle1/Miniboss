@@ -353,7 +353,7 @@ public class Konrad : BattleEntity
 
     private void spendAttackCost(int cost)
     {
-        hp.damage(cost);
+        hp.damage(cost, false);
         lastAttackCost = cost;
         if(statusEffect == KonradStatusEffect.Relaxed)
         {
