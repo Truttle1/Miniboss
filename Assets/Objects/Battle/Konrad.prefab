@@ -241,6 +241,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monster: {fileID: 0}
+  successSound: {fileID: 8300000, guid: 2200d94faae15e14b880a7e817fd6c1e, type: 3}
+  failSound: {fileID: 8300000, guid: 13cb8c991f508474dbe3c177aed45bf4, type: 3}
 --- !u!50 &6832307173140656548
 Rigidbody2D:
   serializedVersion: 4
@@ -311,8 +313,11 @@ MonoBehaviour:
   caffeinatedOverride: {fileID: 22100000, guid: 36e50692eec0b72449bfe8bf7f36c391, type: 2}
   relaxedOverride: {fileID: 22100000, guid: 97ea5e6ae0893fb44ad0c073d095b348, type: 2}
   unhingedOverride: {fileID: 22100000, guid: 0e0a5bb148609ba48833c83e8e4de1fb, type: 2}
+  damagePoisonSound: {fileID: 8300000, guid: 719a9bce8390f3846b3588f242706854, type: 3}
   attack: 1
   statusEffect: 0
+  winSound: {fileID: 8300000, guid: d3537e6989fef0748a074be24230d8c5, type: 3}
+  fleeSound: {fileID: 8300000, guid: 28cfbd45f8965d84fa4983a114ed89c2, type: 3}
 --- !u!114 &7591552740427598621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,6 +332,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monster: {fileID: 0}
   projectile: {fileID: 5912946397486573135, guid: 5556297549246334f817a4284261c546, type: 3}
+  shootSound: {fileID: 8300000, guid: a2d954a4956ef224f8e687fb5bd237a8, type: 3}
+  hitSound: {fileID: 8300000, guid: 719a9bce8390f3846b3588f242706854, type: 3}
 --- !u!114 &6969036483348913149
 MonoBehaviour:
   m_ObjectHideFlags: 0

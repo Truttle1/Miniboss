@@ -175,6 +175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iFrameDuration: 2
   translucentAlpha: 0.5
+  jump: {fileID: 8300000, guid: 9063c009e12c3924f98cb742c4cd1bb7, type: 3}
 --- !u!95 &8665757094494525331
 Animator:
   serializedVersion: 5

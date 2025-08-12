@@ -10,6 +10,8 @@ public class KonradTomatoThrow : BattleAttack
     private Konrad konrad;
     public int damageMultiplier = 4;
 
+    [SerializeField]
+    private AudioClip attackSound;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -38,6 +40,7 @@ public class KonradTomatoThrow : BattleAttack
             p.transform.position = Vector3.Lerp(startPos, monster.transform.position, progress);
             yield return null;
         }
+        EventBus.Publish(new PlaySFXEvent(attackSound));
         Destroy(p);
         int dmg = monster.GetComponent<HasHP>().damage((int)(GetComponent<Konrad>().GetAttack() * damageMultiplier));
         if(monster.GetComponent<Knockback>() != null)

@@ -33,6 +33,8 @@ public class Konrad : BattleEntity
 
     private bool statusEffectNew = false;
 
+    [SerializeField] private AudioClip damagePoisonSound;
+
     private void SetStatusOverrideController()
     {
         switch(statusEffect)
@@ -73,6 +75,12 @@ public class Konrad : BattleEntity
     private KonradStatusEffect statusEffect = KonradStatusEffect.None;
 
     private int numSelectionsPerTurn = 1;
+
+    [SerializeField]
+    private AudioClip winSound;
+
+    [SerializeField]
+    private AudioClip fleeSound;
 
 
     private enum MenuState
@@ -223,6 +231,7 @@ public class Konrad : BattleEntity
 
     private IEnumerator TakeDamageFromPoison()
     {
+        EventBus.Publish(new PlaySFXEvent(damagePoisonSound));
         takingDamageFromPoison = true;
         setHurtAnimation(true);
         hp.damage(1);
@@ -243,9 +252,9 @@ public class Konrad : BattleEntity
                     {
                         numSelectionsPerTurn -= 1;
                     }
-                    if(numSelectionsPerTurn == 0)
+                    if(numSelectionsPerTurn == 0 && !battleFinished)
                     {
-                        if(statusEffect == KonradStatusEffect.Poison && !tookDamageFromPoison)
+                        if(statusEffect == KonradStatusEffect.Poison && !BattleManager.instance.allEnemiesDead())
                         {
                             if(!takingDamageFromPoison)
                             {
@@ -647,6 +656,9 @@ public class Konrad : BattleEntity
         {
             battleFinished = true;
             animator.SetBool("win", true);
+            
+            EventBus.Publish(new PlaySFXEvent(winSound));
+            GameManager.Instance.StopMusic();
         }
     }
 
@@ -664,12 +676,14 @@ public class Konrad : BattleEntity
     {
         transform.localScale = new Vector2(1.25f, 1.25f);
         animator.SetBool("flee", true);
+        GameManager.Instance.StopMusic();
         float startTime = Time.time;
         while(Time.time < startTime + 1.0f) 
         {
             rb.MovePosition(transform.position - new Vector3(3.0f, 0, 0) * Time.fixedDeltaTime);
             yield return null;
         }
+        EventBus.Publish(new PlaySFXEvent(fleeSound));
         EventBus.Publish(new BigTextStartEvent(BigTextType.Escape));
         GameManager.Instance.setBattleStatus(LastBattleStatus.Escape);
         while(true) 

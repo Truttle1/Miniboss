@@ -665,10 +665,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1458018588984061426, guid: 9ecbf22cd9ba9394cb44203ada1d82e6, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 2446706459369968618, guid: 9ecbf22cd9ba9394cb44203ada1d82e6, type: 3}
+      propertyPath: winSound
+      value: 
+      objectReference: {fileID: 8300000, guid: d3537e6989fef0748a074be24230d8c5, type: 3}
+    - target: {fileID: 2446706459369968618, guid: 9ecbf22cd9ba9394cb44203ada1d82e6, type: 3}
+      propertyPath: fleeSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 28cfbd45f8965d84fa4983a114ed89c2, type: 3}
+    - target: {fileID: 2446706459369968618, guid: 9ecbf22cd9ba9394cb44203ada1d82e6, type: 3}
+      propertyPath: damagePoisonSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 719a9bce8390f3846b3588f242706854, type: 3}
+    - target: {fileID: 3296362767697965745, guid: 9ecbf22cd9ba9394cb44203ada1d82e6, type: 3}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 719a9bce8390f3846b3588f242706854, type: 3}
     - target: {fileID: 6566041168960068792, guid: 9ecbf22cd9ba9394cb44203ada1d82e6, type: 3}
       propertyPath: failSound
       value: 
@@ -742,6 +754,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3188732268684835847, guid: b893a9e16c563f24cbb3d21b2da4a8dc, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4097609401474421240, guid: b893a9e16c563f24cbb3d21b2da4a8dc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.1673801

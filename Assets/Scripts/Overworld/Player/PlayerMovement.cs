@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float iFrameDuration = 5f;
     [SerializeField] private float translucentAlpha = 0.5f;
 
+    [SerializeField] private AudioClip jump;
+
     private bool autoMove = false;
     private float autoMoveSpeed = 0f;
 
@@ -70,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
                 if(onGround)
                 {
                     verticalMovement = JUMP;
+                    EventBus.Publish(new PlaySFXEvent(jump));
                 }
             }
         }

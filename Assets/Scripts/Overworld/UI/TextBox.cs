@@ -18,6 +18,8 @@ public class TextBox : MonoBehaviour
     
     public static TextBox instance;
 
+    public AudioClip scrollSound;
+
 
     void Start()
     {
@@ -50,6 +52,7 @@ public class TextBox : MonoBehaviour
         while(currentText != currentPair.text)
         {
             position += 1;
+            EventBus.Publish(new PlaySFXEvent(scrollSound));
             if(position < currentPair.text.Length)
             {
                 currentText = currentPair.text.Substring(0, position);
@@ -114,7 +117,7 @@ public class TextBox : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && false)
         {
             EventBus.Publish(new DialogPair(null, "test string"));
             EventBus.Publish(new DialogPair(null, "another test string"));

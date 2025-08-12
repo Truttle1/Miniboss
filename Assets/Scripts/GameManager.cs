@@ -133,6 +133,14 @@ public class GameManager : MonoBehaviour
         musicSource.Play();
     }
 
+    public void StopMusic()
+    {
+        if (musicSource != null && musicSource.isPlaying)
+        {
+            musicSource.Stop();
+        }
+    }
+
     public AudioClip GetPlayingMusic()
     {
         return musicSource != null && musicSource.isPlaying ? musicSource.clip : null;
